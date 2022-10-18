@@ -3,7 +3,6 @@ class product_model extends CI_Model
 {
     function tampil_data()
     {
-
         return $this->db->get('user')->result();
     }
     function input_data($data, $table)
@@ -28,11 +27,11 @@ class product_model extends CI_Model
     function cari_data($keyword)
     {
         $this->db->select('*');
-		$this->db->from('user');
-		if(!empty($keyword)){
-			$this->db->like('produk',$keyword);
-            $this->db->or_like('harga',$keyword);
-		}
-		return $this->db->get()->result();
+        $this->db->from('user');
+        if (!empty($keyword)) {
+            $this->db->like('produk', $keyword);
+            $this->db->or_like('harga', $keyword);
+        }
+        return $this->db->get()->result();
     }
 }

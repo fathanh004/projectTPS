@@ -18,6 +18,7 @@ $this->load->view('navbar');
         <h1>Sistem Informasi dengan CodeIgniter</h1>
     </center>
     <center><?php echo anchor('crud/tambah', 'Tambah Data'); ?></center>
+    <center><?php echo anchor('crud/graph', 'Tampil Chart'); ?></center>
     <table class="table table-striped" style="margin:20px auto;" border="1">
         <tr>
             <th>No</th>

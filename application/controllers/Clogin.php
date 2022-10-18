@@ -70,8 +70,10 @@ class Clogin extends CI_Controller
                 }
             } else {
                 $data = array(
-                    'error_message' => 'Invalid Username or Password'
+                    'error_message' => 'Invalid Username or Password',
+                    'title' => 'Login Page'
                 );
+                $this->load->view('header',$data);
                 $this->load->view('loginView', $data);
             }
         }

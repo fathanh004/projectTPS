@@ -14,6 +14,11 @@ class Crud extends CI_Controller
         $this->load->view('product_view', $data);
         $this->load->view('footer');
     }
+    function graph()
+    {
+        $data['graph'] = $this->product_model->tampil_data();
+        $this->load->view('chart', $data);
+    }
     function biasa()
     {
         $data['user'] = $this->product_model->tampil_data();
@@ -90,7 +95,7 @@ class Crud extends CI_Controller
             $this->load->view('product_view', $data);
         } else if ($role == 'user') {
             $this->load->view('userView', $data);
-        } 
+        }
         $this->load->view('footer');
     }
 }
