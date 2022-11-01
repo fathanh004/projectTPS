@@ -8,6 +8,8 @@ if (isset($this->session->userdata['logged_in'])) {
 }
 if ($role == "admin"){
     header("location: /projectTPS/Crud");
+} else if ($role == "mngr"){
+    header("location: /projectTPS/Crud/manajer");
 }
 $this->load->view('navbar');
 ?>

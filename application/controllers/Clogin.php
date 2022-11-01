@@ -26,7 +26,7 @@ class Clogin extends CI_Controller
             'title' => 'Login Page'
         );
         $this->load->helper('url');
-        $this->load->view('header',$data);
+        $this->load->view('header', $data);
         $this->load->view('loginView');
     }
 
@@ -62,10 +62,12 @@ class Clogin extends CI_Controller
                     );
                     // Add user data in session
                     $this->session->set_userdata('logged_in', $session_data);
-                    if ($role == 'admin'){
-                    redirect('Crud');
-                    } else {
-                    redirect('Crud/biasa');
+                    if ($role == 'admin') {
+                        redirect('Crud');
+                    } else if ($role == 'user') {
+                        redirect('Crud/biasa');
+                    } else if ($role == 'mngr') {
+                        redirect('Crud/manajer');
                     }
                 }
             } else {
@@ -73,7 +75,7 @@ class Clogin extends CI_Controller
                     'error_message' => 'Invalid Username or Password',
                     'title' => 'Login Page'
                 );
-                $this->load->view('header',$data);
+                $this->load->view('header', $data);
                 $this->load->view('loginView', $data);
             }
         }

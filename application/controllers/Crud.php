@@ -17,7 +17,10 @@ class Crud extends CI_Controller
     function graph()
     {
         $data['graph'] = $this->product_model->tampil_data();
+        $data['title'] = 'Grafik Produk';
+        $this->load->view('header', $data);
         $this->load->view('chart', $data);
+        $this->load->view('footer');
     }
     function biasa()
     {
@@ -25,6 +28,24 @@ class Crud extends CI_Controller
         $data['title'] = 'User Page';
         $this->load->view('header', $data);
         $this->load->view('userView', $data);
+        $this->load->view('footer');
+    }
+    function manajer()
+    {
+        $data['graph'] = $this->product_model->tampil_data();
+        $data['graph2'] = $this->product_model->tampil_data2();
+        $data['title'] = 'Grafik 2 Toko';
+        $this->load->view('header', $data);
+        $this->load->view('managerView', $data);
+        $this->load->view('footer');
+    }
+    function karyawan()
+    {
+        $data['graph'] = $this->product_model->tampil_karyawanPria();
+        $data['graph2'] = $this->product_model->tampil_karyawanWanita();
+        $data['title'] = 'Grafik Karyawan';
+        $this->load->view('header', $data);
+        $this->load->view('karyawan', $data);
         $this->load->view('footer');
     }
     function tambah()

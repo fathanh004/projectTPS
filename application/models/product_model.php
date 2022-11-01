@@ -5,6 +5,18 @@ class product_model extends CI_Model
     {
         return $this->db->get('user')->result();
     }
+    function tampil_data2()
+    {
+        return $this->db->get('toko2')->result();
+    }
+    function tampil_karyawanPria()
+    {
+        return $this->db->get_where('karyawan', array('jk' => 'Pria'))->result();
+    }
+    function tampil_karyawanWanita()
+    {
+        return $this->db->get_where('karyawan', array('jk' => 'Wanita'))->result();
+    }
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);
