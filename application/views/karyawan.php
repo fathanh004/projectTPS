@@ -167,6 +167,7 @@ $this->load->view('navbar');
                             }]
                         },
                     });
+
                 </script>
             </main>
         </div>

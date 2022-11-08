@@ -14,6 +14,38 @@ class Crud extends CI_Controller
         $this->load->view('product_view', $data);
         $this->load->view('footer');
     }
+    function faq()
+    {
+        $data['title'] = 'FAQ Page';
+        $this->load->view('header', $data);
+        $this->load->view('faq');
+        $this->load->view('footer');
+    }
+    function searchFAQ()
+    {
+        $keyword = $this->input->get('keyword');
+        $data = $this->product_model->cari_pertanyaan($keyword);
+        $data = array(
+            'title' => 'Hasil Cari',
+            'keyword'    => $keyword,
+            'pertanyaan' => $data
+        );
+
+        $this->load->view('header', $data);
+        $this->load->view('faq', $data);
+        $this->load->view('footer');
+    }
+    function tambahFAQ()
+    {
+        $quest = $this->input->post('quest');
+
+        $data = array(
+            'pertanyaan' => $quest,
+            'jawaban' => 'Belum ada jawaban'	
+        );
+        $this->product_model->input_data($data, 'pertanyaan');
+        redirect('crud/faq');
+    }
     function graph()
     {
         $data['graph'] = $this->product_model->tampil_data();
@@ -67,6 +99,7 @@ class Crud extends CI_Controller
         $this->product_model->input_data($data, 'user');
         redirect('crud/index');
     }
+
     function hapus($id)
     {
         $where = array('id' => $id);
@@ -116,6 +149,8 @@ class Crud extends CI_Controller
             $this->load->view('product_view', $data);
         } else if ($role == 'user') {
             $this->load->view('userView', $data);
+        } else if ($role == 'mngr') {
+            $this->load->view('product_view', $data);
         }
         $this->load->view('footer');
     }

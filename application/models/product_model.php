@@ -17,6 +17,16 @@ class product_model extends CI_Model
     {
         return $this->db->get_where('karyawan', array('jk' => 'Wanita'))->result();
     }
+    function cari_pertanyaan($keyword)
+    {
+        $this->db->select('*');
+        $this->db->from('pertanyaan');
+        if (!empty($keyword)) {
+            $this->db->like('pertanyaan', $keyword);
+            $this->db->or_like('jawaban', $keyword);
+        }
+        return $this->db->get()->result();
+    }
     function input_data($data, $table)
     {
         $this->db->insert($table, $data);
