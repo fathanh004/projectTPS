@@ -8,6 +8,8 @@ if (isset($this->session->userdata['logged_in'])) {
 }
 if ($role == "user") {
     header("location: /projectTPS/Crud/biasa");
+} else if ($role == "mngr") {
+    header("location: /projectTPS/Crud/manajer");
 }
 $this->load->view('navbar');
 ?>
@@ -17,7 +19,7 @@ $this->load->view('navbar');
         <h1>Sistem Informasi dengan CodeIgniter</h1>
     </center>
     <center><?php echo anchor('crud/tambah', 'Tambah Data'); ?></center>
-
+    <center><?php echo anchor('crud/graph', 'Tampil Chart'); ?></center>
     <table class="table table-striped" style="margin:20px auto;" border="1">
         <tr>
             <th>No</th>

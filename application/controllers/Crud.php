@@ -106,6 +106,16 @@ class Crud extends CI_Controller
         $this->product_model->hapus_data($where, 'user');
         redirect('crud/index');
     }
+    function beli($id){
+        $where = array('id' => $id);
+        $temp = $this->product_model->edit_data($where, 'user')->result();
+        $jumlah = $temp[0]->jumlah;
+        $tempINT = $jumlah - 1;
+        $data = array('jumlah' => $tempINT);
+        $this->product_model->update_data($where, $data, 'user');
+        redirect('crud/index');
+    }
+
     function edit($id)
     {
         $where = array('id' => $id);

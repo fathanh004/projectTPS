@@ -19,14 +19,14 @@ $this->load->view('navbar');
     <center>
         <h1>Sistem Informasi dengan CodeIgniter</h1>
     </center>
-    <center><?php echo anchor('crud/tambah', 'Tambah Data'); ?></center>
-    <center><?php echo anchor('crud/graph', 'Tampil Chart'); ?></center>
+    
     <table class="table table-striped" style="margin:20px auto;" border="1">
         <tr>
             <th>No</th>
             <th>produk</th>
             <th>harga</th>
             <th>jumlah</th>
+            <th>Action</th>
         </tr>
         <?php
         $no = 1;
@@ -37,6 +37,9 @@ $this->load->view('navbar');
                 <td><?php echo $u->produk ?></td>
                 <td><?php echo $u->harga ?></td>
                 <td><?php echo $u->jumlah ?></td>
+                <td>
+                    <?php echo anchor('crud/beli/' . $u->id, 'Beli'); ?>
+                </td>
             </tr>
         <?php } ?>
     </table>
