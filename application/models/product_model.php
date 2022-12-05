@@ -5,6 +5,12 @@ class product_model extends CI_Model
     {
         return $this->db->get('user')->result();
     }
+    function tampil_dataBiasa()
+    {
+        $this->db->limit('3');
+        $this->db->order_by('terjual DESC');
+        return $this->db->get('user')->result();
+    }
     function tampil_data2()
     {
         return $this->db->get('toko2')->result();
@@ -53,6 +59,7 @@ class product_model extends CI_Model
         if (!empty($keyword)) {
             $this->db->like('produk', $keyword);
             $this->db->or_like('harga', $keyword);
+            $this->db->order_by('terjual DESC, harga ASC');
         }
         return $this->db->get()->result();
     }

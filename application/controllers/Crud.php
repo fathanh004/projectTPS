@@ -57,6 +57,7 @@ class Crud extends CI_Controller
     function biasa()
     {
         $data['user'] = $this->product_model->tampil_data();
+        $data['top3'] = $this->product_model->tampil_dataBiasa();
         $data['title'] = 'User Page';
         $this->load->view('header', $data);
         $this->load->view('userView', $data);
@@ -69,6 +70,15 @@ class Crud extends CI_Controller
         $data['title'] = 'Grafik 2 Toko';
         $this->load->view('header', $data);
         $this->load->view('managerView', $data);
+        $this->load->view('footer');
+    }
+    function report()
+    {
+        $data['graph'] = $this->product_model->tampil_data();
+        $data['graph2'] = $this->product_model->tampil_data2();
+        $data['title'] = 'Grafik Penjualan';
+        $this->load->view('header', $data);
+        $this->load->view('reportView', $data);
         $this->load->view('footer');
     }
     function karyawan()
@@ -111,7 +121,7 @@ class Crud extends CI_Controller
         $temp = $this->product_model->edit_data($where, 'user')->result();
         $jumlah = $temp[0]->jumlah;
         $tempINT = $jumlah - 1;
-        $data = array('jumlah' => $tempINT);
+        $data = array('jumlah' => $tempINT, 'terjual' => $temp[0]->terjual + 1);
         $this->product_model->update_data($where, $data, 'user');
         redirect('crud/index');
     }
@@ -152,7 +162,8 @@ class Crud extends CI_Controller
         $data = array(
             'title' => 'Hasil Cari',
             'keyword'    => $keyword,
-            'user'        => $data
+            'user'        => $data,
+            'top3' => null
         );
         $this->load->view('header', $data);
         if ($role == 'admin') {
